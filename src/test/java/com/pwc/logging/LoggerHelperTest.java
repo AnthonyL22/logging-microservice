@@ -1,4 +1,4 @@
-package com.qualcomm.qherkin;
+package com.pwc.logging;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
@@ -49,7 +49,7 @@ public class LoggerHelperTest extends LoggerBaseTest {
 
         when(mockTestResult.getMethod()).thenReturn(mockITestNGMethod);
         when(mockITestNGMethod.getTestClass()).thenReturn(mockTestClass);
-        when(mockTestClass.toString()).thenReturn("com.qualcomm.qherkin.LoggerBaseTest");
+        when(mockTestClass.toString()).thenReturn("com.pwc.logging.LoggerBaseTest");
 
         expectedCalendar = Calendar.getInstance(TimeZone.getTimeZone(TIMEZONE));
         expectedCalendar.add(Calendar.DATE, DATE_OFFSET);

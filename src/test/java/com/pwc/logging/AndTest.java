@@ -1,4 +1,4 @@
-package com.qualcomm.qherkin;
+package com.pwc.logging;
 
 import org.junit.Test;
 
@@ -6,43 +6,43 @@ public class AndTest extends LoggerBaseTest {
 
     @Test
     public void andBlankTest() {
-        QherkinLoggerService.AND("");
+        LoggerService.AND("");
         verifyLogOutput("And");
     }
 
     @Test
     public void andNullTest() {
-        QherkinLoggerService.AND(null);
+        LoggerService.AND(null);
         verifyLogOutput("And null");
     }
 
     @Test
     public void andNullArgTest() {
-        QherkinLoggerService.AND("Login Test for user=%s and password=%s", null);
+        LoggerService.AND("Login Test for user=%s and password=%s", null);
         verifyLogOutput("And Login Test for user=null and password=null");
     }
 
     @Test
     public void andMismatchArgTest() {
-        QherkinLoggerService.AND("Login Test for user=%s and password=%s", "foobar");
+        LoggerService.AND("Login Test for user=%s and password=%s", "foobar");
         verifyLogOutput("And Login Test for user= and password=foobar");
     }
 
     @Test
     public void andTooManyArgTest() {
-        QherkinLoggerService.AND("Login Test for user=%s and password=%s", "foobar", "password", true);
+        LoggerService.AND("Login Test for user=%s and password=%s", "foobar", "password", true);
         verifyLogOutput("And Login Test for user=foobar and password=");
     }
 
     @Test
     public void andWithArgsTest() {
-        QherkinLoggerService.AND("Login Test for user=%s and password=%s", "anthony", "foobar");
+        LoggerService.AND("Login Test for user=%s and password=%s", "anthony", "foobar");
         verifyLogOutput("And Login Test for user=anthony and password=foobar");
     }
 
     @Test
     public void andTest() {
-        QherkinLoggerService.AND("Login Test for user");
+        LoggerService.AND("Login Test for user");
         verifyLogOutput("And Login Test for user");
     }
 

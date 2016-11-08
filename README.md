@@ -17,23 +17,18 @@ capabilities of the String object.  Many of the methods in this API use Java's v
 
 ```
 <dependency>
-    <groupId>com.qualcomm.qherkin</groupId>
-    <artifactId>qherkin-logging-service</artifactId>
+    <groupId>com.pwc.logging</groupId>
+    <artifactId>logging-microservice</artifactId>
     <version>1.0.3</version>
 </dependency>
 ```
 
-## Jenkins Job
-
-The [Jenkins job](http://toautoweb2.na.qualcomm.com:8080/view/Services/job/qherkin-logging-service/) is setup and configured to use the JaCoCo Code Coverage library.
-
-
 ## Integration
 
-Simply, integrate the **QherkinLoggerService** service into your project by adding the following static import statement to your class:
+Simply, integrate the **LoggerService** service into your project by adding the following static import statement to your class:
 
 ```
-import static com.qualcomm.qherkin.QherkinLoggerService.*;
+import static com.pwc.logging.LoggerService.*;
 ```
 
 ## Usage

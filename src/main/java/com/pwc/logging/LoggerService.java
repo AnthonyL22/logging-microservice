@@ -1,11 +1,11 @@
-package com.qualcomm.qherkin;
+package com.pwc.logging;
 
 import org.apache.commons.lang.StringUtils;
 import org.testng.Reporter;
 
-import static com.qualcomm.qherkin.LoggerHelper.*;
+import static com.pwc.logging.LoggerHelper.*;
 
-public class QherkinLoggerService {
+public class LoggerService {
 
     public static final String DATETIME_LOGGER_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
     public static final String WEB_CARRIAGE_RETURN = "</br>";
