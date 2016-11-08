@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.qualcomm.qherkin</groupId>
-    <artifactId>qherkin-logging-service</artifactId>
-    <name>Qualcomm Logging Service</name>
-    <version>1.0.5-SNAPSHOT</version>
+    <artifactId>logging-microservice</artifactId>
+    <name>Logging Microservice</name>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -31,9 +31,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:https://github.qualcomm.com/c-anlomb/qherkin-logging-service</connection>
-        <developerConnection>scm:git:https://github.qualcomm.com/c-anlomb/qherkin-logging-service</developerConnection>
-        <url>scm:git:https://github.qualcomm.com/c-anlomb/qherkin-logging-service</url>
+        <connection>scm:git:https://github.com/AnthonyL22/logging-microservice</connection>
+        <developerConnection>scm:git:https://github.com/AnthonyL22/logging-microservice</developerConnection>
+        <url>scm:git:https://github.com/AnthonyL22/logging-microservice</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -197,7 +197,7 @@
         </pluginManagement>
     </build>
 
-    <repositories>
+<!--     <repositories>
 
         <repository>
             <id>legalIT-nexus</id>
@@ -223,6 +223,6 @@
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
 
-    </distributionManagement>
+    </distributionManagement> -->
 
 </project>
