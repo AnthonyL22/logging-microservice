@@ -124,11 +124,6 @@ public class LoggerHelperTest extends LoggerBaseTest {
     }
 
     @Test
-    public void getDateTimePatterTest() {
-        Assert.assertEquals(expectedDateAsString, LoggerHelper.getDateTime("MM"));
-    }
-
-    @Test
     public void getDateTimePatternAndTimezoneTest() {
         Assert.assertEquals(expectedDateAsString, LoggerHelper.getDateTime(DATE_PATTERN, TIMEZONE));
     }
