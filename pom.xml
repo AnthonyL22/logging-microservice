@@ -31,7 +31,7 @@
         <maven-release-plugin.version>2.3.2</maven-release-plugin.version>
         <maven-scm-provider-gitxexe.version>1.9</maven-scm-provider-gitxexe.version>
         <maven-scm-plugin.version>1.8.1</maven-scm-plugin.version>
-        <javadoc-plugin.version>2.10.4</javadoc-plugin.version>
+        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
 
     </properties>
 
@@ -105,7 +105,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${javadoc-plugin.version}</version>
+                <version>${maven-javadoc-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
