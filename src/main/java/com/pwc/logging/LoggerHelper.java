@@ -125,7 +125,8 @@ public class LoggerHelper {
      * Utility method which returns a Date and time <code>String</code> for a specified DATE offset in a
      * given date formatted pattern for a particular TimeZone <code>String</code>
      *
-     * @param pattern date/time pattern
+     * @param pattern  date/time pattern
+     * @param timeZone timezone of timestamp
      * @return offset date and time
      */
     public static String getDateTime(final String pattern, final String timeZone) {
@@ -137,6 +138,7 @@ public class LoggerHelper {
      * given date formatted pattern for a particular TimeZone <code>String</code>
      *
      * @param pattern    date/time pattern
+     * @param timeZone   timezone of timestamp
      * @param dateOffset date offset
      * @return offset date and time
      */
@@ -151,6 +153,7 @@ public class LoggerHelper {
      *
      * @param pattern  date/time pattern
      * @param calendar calendar instance
+     * @param timeZone timezone of timestamp
      * @return formatted calendar time
      */
     public static String getDateTime(final String pattern, final Calendar calendar, final String timeZone) {
@@ -164,7 +167,8 @@ public class LoggerHelper {
      * Utility method which returns a Date for a specified DATE offset for a
      * particular TimeZone <code>String</code>
      *
-     * @param timeZone timezone of timestamp
+     * @param timeZone   timezone of timestamp
+     * @param dateOffset date offset
      * @return offset date and time
      */
     public static Date getDate(final String timeZone, final int dateOffset) {
@@ -176,7 +180,8 @@ public class LoggerHelper {
     /**
      * Utility method which returns a Date for a specified DATE offset
      *
-     * @return offset date and time
+     * @param dateOffset date offset
+     * @return offset date offset
      */
     public static Date getDate(final int dateOffset) {
         Calendar cal = Calendar.getInstance();

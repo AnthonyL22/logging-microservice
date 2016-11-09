@@ -10,10 +10,10 @@
     <packaging>jar</packaging>
 
     <properties>
-             
+
         <java_code.version>1.7</java_code.version>
-        
-        <!-- Dependency Versions -->     
+
+        <!-- Dependency Versions -->
         <junit.version>4.11</junit.version>
         <testng.version>6.8.7</testng.version>
         <mockito.version>1.10.19</mockito.version>
@@ -22,7 +22,7 @@
         <commons.lang.version>2.6</commons.lang.version>
         <surefire.junit.version>2.18.1</surefire.junit.version>
         <jacoco.version>0.7.5.201505241946</jacoco.version>
-             
+
         <!-- Plugin Versions -->
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.14</maven-surefire-plugin.version>
@@ -31,6 +31,7 @@
         <maven-release-plugin.version>2.3.2</maven-release-plugin.version>
         <maven-scm-provider-gitxexe.version>1.9</maven-scm-provider-gitxexe.version>
         <maven-scm-plugin.version>1.8.1</maven-scm-plugin.version>
+        <javadoc-plugin.version>2.10.4</javadoc-plugin.version>
 
     </properties>
 
@@ -101,6 +102,11 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${javadoc-plugin.version}</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -198,14 +204,5 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <repositories>
-
-        <repository>
-            <id>snapshot-repo</id>
-            <url>https://github.com/AnthonyL22/mvn-repo/raw/master/snapshots</url>
-        </repository>
-
-    </repositories>
 
 </project>

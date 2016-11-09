@@ -1,6 +1,5 @@
 package com.pwc.logging;
 
-import com.pwc.logging.LoggerService;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 

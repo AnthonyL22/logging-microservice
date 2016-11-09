@@ -19,7 +19,7 @@ capabilities of the String object.  Many of the methods in this API use Java's v
 <dependency>
     <groupId>com.pwc.logging</groupId>
     <artifactId>logging-microservice</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
