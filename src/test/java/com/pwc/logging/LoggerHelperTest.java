@@ -125,7 +125,7 @@ public class LoggerHelperTest extends LoggerBaseTest {
 
     @Test
     public void getDateTimePatterTest() {
-        Assert.assertEquals(expectedDateAsString, LoggerHelper.getDateTime(DATE_PATTERN));
+        Assert.assertEquals(expectedDateAsString, LoggerHelper.getDateTime("MM\\yyyy"));
     }
 
     @Test
