@@ -24,7 +24,7 @@
         <surefire.junit.version>2.18.1</surefire.junit.version>
         <jacoco.version>0.7.5.201505241946</jacoco.version>
 
-        <!-- Plugin Versions -->
+        <!--  Plugin Versions  -->
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.14</maven-surefire-plugin.version>
         <versions-maven-plugin.version>2.1</versions-maven-plugin.version>
