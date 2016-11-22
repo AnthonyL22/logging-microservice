@@ -53,6 +53,50 @@ Scenario:  Deny a guest access to restricted material
    But I see an invalid title
 ```
 
+## Video Logging
+The video logging feature is unique in that it takes a directory of .jpeg, .jpg or .png image files and converts those 
+images into a single movie file (.mov). The benefit of this is now users of this library do not need Sauce Labs or 
+other paid-for services to see video's of their test(s) being executed.  
+
+This system recommends using Selenium's TakesScreenshot functionality. It is up to you to implement a screenshot
+mechanism and to output these images to a specific directory.
+
+### Usage
+There are two ways to use:
+
+1.  VideoLogger.java - static application you can call directly that has a String array of arguments 
+```
+arg[0] = Source Image Files Directory (Default - user's current directory)
+arg[1] = video width (Default - width of first image)
+arg[2] = video Height (Default - height of first image)
+arg[3] = Frames/sec (Default - 2 frames/sec)
+arg[4] = Output .mov file name (Default - 'out.mov')"
+arg[5] = Output .mov file location (Default - Source file directory)
+```
+
+#### Using from within a class
+```
+VideoLogger.main(new String[]{"C:\\images"});
+OR
+VideoLogger.main(new String[]{"C:\\images" "500" "600" "10" "out.mov" "C:\\temp\\"});
+```
+
+#### Using from command line
+```
+Unix Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLogger /User/username/Desktop/images 500 600 10 out.mov /User/username/Desktop/"
+Windows Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLogger C:\\images 500 600 10 out.mov C:\\temp\\"
+```
+
+2.  VideoLoggerService - instantiate a new service object from your class
+```
+VideoLoggerService videoLoggerService = new VideoLoggerService();
+videoLoggerService.setWidth(500);
+videoLoggerService.setHeight(500);
+videoLoggerService.setFrameRate(2);
+videoLoggerService.setSourceFilesDirectoryURL("C:\\sample\\images");
+videoLoggerService.setOutputMovieFileName("my_test_video.mov");
+videoLoggerService.convert();
+```
 
 ## Tips & Tricks
 [Declarative vs. Imperative Logging](http://itsadeliverything.com/declarative-vs-imperative-gherkin-scenarios-for-cucumber)

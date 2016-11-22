@@ -49,7 +49,7 @@ public class VideoLogger {
             videoLoggerService.setOutputMovieFileName(getOutputMovieFileName());
             videoLoggerService.setOutputDirectoryURL(getOutputURL());
             videoLoggerService.setSourceFilesDirectoryURL(getSourceFilesDirectoryURL());
-            VideoLoggerService.convert();
+            videoLoggerService.convert();
 
         } catch (Exception e) {
 

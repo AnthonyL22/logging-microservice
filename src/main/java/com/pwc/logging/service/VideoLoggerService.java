@@ -25,15 +25,15 @@ import static com.pwc.logging.service.LoggerService.LOG;
 
 public class VideoLoggerService implements ControllerListener, DataSinkListener {
 
-    private static int width;
-    private static int height;
-    private static int frameRate;
-    private static String sourceFilesDirectoryURL;
-    private static String outputMovieFileName;
-    private static String outputDirectoryURL;
+    private int width;
+    private int height;
+    private int frameRate;
+    private String sourceFilesDirectoryURL;
+    private String outputMovieFileName;
+    private String outputDirectoryURL;
 
-    private static final int DEFAULT_FRAME_RATE = 2;
-    private static final String DEFAULT_OUTPUT_FILE_NAME = "out.mov";
+    private final int DEFAULT_FRAME_RATE = 2;
+    private final String DEFAULT_OUTPUT_FILE_NAME = "out.mov";
 
     public VideoLoggerService() {
     }
@@ -60,7 +60,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     /**
      * Main entry point for conversion of images to video.
      */
-    public static void convert() {
+    public void convert() {
 
         try {
 
@@ -69,8 +69,8 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
             frameRate = frameRate > -1 ? frameRate : DEFAULT_FRAME_RATE;
             sourceFilesDirectoryURL = sourceFilesDirectoryURL != null ? sourceFilesDirectoryURL : "";
             outputMovieFileName = outputMovieFileName != null ? outputMovieFileName : DEFAULT_OUTPUT_FILE_NAME;
-            outputDirectoryURL = outputDirectoryURL != null ? (StringUtils.prependIfMissing(outputDirectoryURL, "file:")) :
-                    StringUtils.prependIfMissing(sourceFilesDirectoryURL, "file:") + File.separator + DEFAULT_OUTPUT_FILE_NAME;
+            outputDirectoryURL = outputDirectoryURL != null ? StringUtils.prependIfMissing(outputDirectoryURL, "file:") + File.separator + outputMovieFileName :
+                    StringUtils.prependIfMissing(sourceFilesDirectoryURL, "file:") + File.separator + outputMovieFileName;
 
             HashMap videoSettings = prepareVideoConversion();
 
@@ -103,7 +103,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
      *
      * @return Map of settings
      */
-    protected static HashMap prepareVideoConversion() {
+    protected HashMap prepareVideoConversion() {
 
         HashMap settings = new HashMap();
 
@@ -167,7 +167,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     /**
      * If movie was successfully created, then delete all image files used to the create movie post production
      */
-    protected static void cleanUpConversion() {
+    protected void cleanUpConversion() {
         File movieFile = new File(sourceFilesDirectoryURL + File.separator + outputMovieFileName);
         if (movieFile.exists()) {
             FilenameFilter filter = new ImageFileFilter();
