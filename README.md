@@ -64,7 +64,7 @@ mechanism and to output these images to a specific directory.
 ### Usage
 There are two ways to use:
 
-1.  VideoLogger.java - static application you can call directly that has a String array of arguments 
+#### VideoLogger.java - static application you can call directly that has a String array of arguments 
 ```
 arg[0] = Source Image Files Directory (Default - user's current directory)
 arg[1] = video width (Default - width of first image)
@@ -74,20 +74,22 @@ arg[4] = Output .mov file name (Default - 'out.mov')"
 arg[5] = Output .mov file location (Default - Source file directory)
 ```
 
-#### Using from within a class
+##### Using from within a class
 ```
 VideoLogger.main(new String[]{"C:\\images"});
 OR
 VideoLogger.main(new String[]{"C:\\images" "500" "600" "10" "out.mov" "C:\\temp\\"});
 ```
 
-#### Using from command line
+##### Using from command line
 ```
 Unix Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLogger /User/username/Desktop/images 500 600 10 out.mov /User/username/Desktop/"
 Windows Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLogger C:\\images 500 600 10 out.mov C:\\temp\\"
 ```
 
-2.  VideoLoggerService - instantiate a new service object from your class
+#### VideoLoggerService - instantiate a new service object from your class
+
+##### Using from within a class
 ```
 VideoLoggerService videoLoggerService = new VideoLoggerService();
 videoLoggerService.setWidth(500);
