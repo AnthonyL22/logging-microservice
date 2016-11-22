@@ -1,5 +1,6 @@
 package com.pwc.logging;
 
+import com.pwc.logging.helper.LoggerHelper;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;

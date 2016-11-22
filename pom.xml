@@ -23,6 +23,8 @@
         <commons.lang.version>2.6</commons.lang.version>
         <surefire.junit.version>2.18.1</surefire.junit.version>
         <jacoco.version>0.7.5.201505241946</jacoco.version>
+        <javax-media.version>2.1.1e</javax-media.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
 
         <!-- Plugin Versions -->
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
@@ -99,6 +101,18 @@
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>${commons.lang.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.media</groupId>
+            <artifactId>jmf</artifactId>
+            <version>${javax-media.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
 
     </dependencies>

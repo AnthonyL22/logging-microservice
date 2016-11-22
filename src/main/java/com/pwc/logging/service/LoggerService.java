@@ -1,9 +1,9 @@
-package com.pwc.logging;
+package com.pwc.logging.service;
 
 import org.apache.commons.lang.StringUtils;
 import org.testng.Reporter;
 
-import static com.pwc.logging.LoggerHelper.*;
+import static com.pwc.logging.helper.LoggerHelper.*;
 
 public class LoggerService {
 

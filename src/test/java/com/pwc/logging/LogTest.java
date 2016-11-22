@@ -1,5 +1,6 @@
 package com.pwc.logging;
 
+import com.pwc.logging.service.LoggerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;

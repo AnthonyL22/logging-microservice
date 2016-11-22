@@ -1,4 +1,4 @@
-package com.pwc.logging;
+package com.pwc.logging.helper;
 
 import org.apache.commons.lang.StringUtils;
 import org.testng.ITestNGMethod;

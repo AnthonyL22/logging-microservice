@@ -28,7 +28,7 @@ capabilities of the String object.  Many of the methods in this API use Java's v
 Simply, integrate the **LoggerService** service into your project by adding the following static import statement to your class:
 
 ```
-import static com.pwc.logging.LoggerService.*;
+import static com.pwc.logging.service.LoggerService.*;
 ```
 
 ## Usage
