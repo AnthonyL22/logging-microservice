@@ -25,12 +25,12 @@ import static com.pwc.logging.service.LoggerService.LOG;
 
 public class VideoLoggerService implements ControllerListener, DataSinkListener {
 
-    private int width;
-    private int height;
-    private int frameRate;
-    private String sourceFilesDirectoryURL;
-    private String outputMovieFileName;
-    private String outputDirectoryURL;
+    private static int width;
+    private static int height;
+    private static int frameRate;
+    private static String sourceFilesDirectoryURL;
+    private static String outputMovieFileName;
+    private static String outputDirectoryURL;
 
     private static final int DEFAULT_FRAME_RATE = 2;
     private static final String DEFAULT_OUTPUT_FILE_NAME = "out.mov";
@@ -60,7 +60,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     /**
      * Main entry point for conversion of images to video.
      */
-    public void convert() {
+    public static void convert() {
 
         try {
 
@@ -103,7 +103,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
      *
      * @return Map of settings
      */
-    protected HashMap prepareVideoConversion() {
+    protected static HashMap prepareVideoConversion() {
 
         HashMap settings = new HashMap();
 
@@ -167,7 +167,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     /**
      * If movie was successfully created, then delete all image files used to the create movie post production
      */
-    protected void cleanUpConversion() {
+    protected static void cleanUpConversion() {
         File movieFile = new File(sourceFilesDirectoryURL + File.separator + outputMovieFileName);
         if (movieFile.exists()) {
             FilenameFilter filter = new ImageFileFilter();

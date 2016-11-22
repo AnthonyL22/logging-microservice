@@ -6,10 +6,9 @@ import java.util.Arrays;
 
 import static com.pwc.logging.service.LoggerService.LOG;
 
-public class VideoLoggerStandalone {
+public class VideoLogger {
 
-    private static final int DEFAULT_WIDTH = 1;
-    private static final int DEFAULT_HEIGHT = 1;
+    private static final int DEFAULT_WIDTH = 1, DEFAULT_HEIGHT = 1;
     private static final int DEFAULT_FRAME_RATE = 2;
     private static final String DEFAULT_OUTPUT_FILE_NAME = "out.mov";
 
@@ -21,7 +20,9 @@ public class VideoLoggerStandalone {
     private static String outputURL;
 
     /**
-     * Stand-alone Image to Video conversion tool.  Only arg[0] is Mandatory
+     * Stand-alone Image to Video conversion standalone tool.  This tool takes a directory of images and
+     * converts the images into a single .mov video file.  Only arg[0] is Mandatory
+     *
      * arg[0] = Source Image Files Directory (Default - user's current directory)
      * arg[1] = video width (Default - width of first image)
      * arg[2] = video Height (Default - height of first image)
@@ -48,7 +49,7 @@ public class VideoLoggerStandalone {
             videoLoggerService.setOutputMovieFileName(getOutputMovieFileName());
             videoLoggerService.setOutputDirectoryURL(getOutputURL());
             videoLoggerService.setSourceFilesDirectoryURL(getSourceFilesDirectoryURL());
-            videoLoggerService.convert();
+            VideoLoggerService.convert();
 
         } catch (Exception e) {
 
@@ -105,8 +106,8 @@ public class VideoLoggerStandalone {
         System.out.println("\n args[3] = Frames/sec (Default - 2 frames/sec)");
         System.out.println("\n args[4] = Output .mov file name (Default - 'out.mov')");
         System.out.println("\n args[5] = Output .mov file location (Default - Source file directory from arg[0])");
-        System.out.println("\n\nExample For Unix Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLoggerStandalone /User/username/Desktop/images 500 600 10 out.mov /User/username/Desktop/");
-        System.out.println("\n\nExample For Windows Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLoggerStandalone C:\\images 500 600 10 out.mov C:\\temp\\");
+        System.out.println("\n\nExample For Unix Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLogger /User/username/Desktop/images 500 600 10 out.mov /User/username/Desktop/");
+        System.out.println("\n\nExample For Windows Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLogger C:\\images 500 600 10 out.mov C:\\temp\\");
 
     }
 
@@ -115,7 +116,7 @@ public class VideoLoggerStandalone {
     }
 
     public static void setWidth(int width) {
-        VideoLoggerStandalone.width = width;
+        VideoLogger.width = width;
     }
 
     public static int getHeight() {
@@ -123,7 +124,7 @@ public class VideoLoggerStandalone {
     }
 
     public static void setHeight(int height) {
-        VideoLoggerStandalone.height = height;
+        VideoLogger.height = height;
     }
 
     public static int getFrameRate() {
@@ -131,7 +132,7 @@ public class VideoLoggerStandalone {
     }
 
     public static void setFrameRate(int frameRate) {
-        VideoLoggerStandalone.frameRate = frameRate;
+        VideoLogger.frameRate = frameRate;
     }
 
     public static String getOutputMovieFileName() {
@@ -139,7 +140,7 @@ public class VideoLoggerStandalone {
     }
 
     public static void setOutputMovieFileName(String outputMovieFileName) {
-        VideoLoggerStandalone.outputMovieFileName = outputMovieFileName;
+        VideoLogger.outputMovieFileName = outputMovieFileName;
     }
 
     public static String getSourceFilesDirectoryURL() {
@@ -147,7 +148,7 @@ public class VideoLoggerStandalone {
     }
 
     public static void setSourceFilesDirectoryURL(String sourceFilesDirectoryURL) {
-        VideoLoggerStandalone.sourceFilesDirectoryURL = sourceFilesDirectoryURL;
+        VideoLogger.sourceFilesDirectoryURL = sourceFilesDirectoryURL;
     }
 
     public static String getOutputURL() {
@@ -155,7 +156,7 @@ public class VideoLoggerStandalone {
     }
 
     public static void setOutputURL(String outputURL) {
-        VideoLoggerStandalone.outputURL = outputURL;
+        VideoLogger.outputURL = outputURL;
     }
 
 }
