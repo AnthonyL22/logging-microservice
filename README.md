@@ -10,7 +10,7 @@ capabilities of the String object.  Many of the methods in this API use Java's v
 
 ## Prerequisites
 
-1. Java 1.7
+1. Java 1.8
 2. Maven 3.x
 
 ## Maven Dependency
@@ -19,7 +19,7 @@ capabilities of the String object.  Many of the methods in this API use Java's v
 <dependency>
     <groupId>com.pacificwebconsulting.logging</groupId>
     <artifactId>logging-microservice</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.x</version>
 </dependency>
 ```
 

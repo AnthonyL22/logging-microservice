@@ -12,7 +12,7 @@
 
     <properties>
 
-        <java_code.version>1.7</java_code.version>
+        <java_code.version>1.8</java_code.version>
 
         <!-- Dependency Versions -->
         <junit.version>4.11</junit.version>
