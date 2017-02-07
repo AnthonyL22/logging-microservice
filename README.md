@@ -1,3 +1,5 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.pacificwebconsulting.logging/logging-microservice/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.pacificwebconsulting.logging/logging-microservice)
+
 ## Introduction
 
 Gherkin-Style logger used for automated testing of TestNG-based automation solutions.  This service enables users to 
