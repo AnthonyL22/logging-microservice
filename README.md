@@ -12,6 +12,11 @@ each log message prints the exact timestamp in which an event occurred.
 Also, this service automatically formats the all logging message strings and its arguments by ultimately using the String.format() 
 capabilities of the String object.  Many of the methods in this API use Java's variable arguments. 
 
+# Questions and issues
+
+The [github issue tracker](https://github.com/AnthonyL22/logging-microservice/issues) is **_only_** for bug reports and 
+feature requests. Anything else, such as questions for help in using the library, should be [emailed to our team](http://www.pacificwebconsulting.com/contact/).  
+
 # Prerequisites
 
 1. Java 1.8
