@@ -62,6 +62,31 @@ Scenario:  Deny a guest access to restricted material
    But I see an invalid title
 ```
 
+# Allure Test Result Reporting
+![Sample](screenshots/test-results-report.png "Sample Custom Dashboard")
+
+To add complete Allure test reporting capabilities simply add this plugin to your project as well as the following:
+
+```
+<plugin>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-maven</artifactId>
+    <version>${allure-maven.version}</version>
+  </plugin>
+```
+
+To You can generate a report using one of the following command:
+
+`mvn allure:serve`
+    
+Report will be generated into temp folder. Web server with results will start.
+
+`mvn allure:report`
+    
+Report will be generated tо directory: target/site/allure-maven/index.html
+
+[More Information](https://github.com/allure-framework/allure-maven)
+
 # Video Logging
 The video logging feature is unique in that it takes a directory of .jpeg, .jpg or .png image files and converts those 
 images into a single movie file (.mov). The benefit of this is now users of this library do not need Sauce Labs or 

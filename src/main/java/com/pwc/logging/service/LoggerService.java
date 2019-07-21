@@ -1,15 +1,19 @@
 package com.pwc.logging.service;
 
+import io.qameta.allure.Step;
 import org.apache.commons.lang.StringUtils;
 import org.testng.Reporter;
 
-import static com.pwc.logging.helper.LoggerHelper.*;
+import static com.pwc.logging.helper.LoggerHelper.formatGherkinMessage;
+import static com.pwc.logging.helper.LoggerHelper.formatMessage;
+import static com.pwc.logging.helper.LoggerHelper.getClassName;
+import static com.pwc.logging.helper.LoggerHelper.getDateTime;
 
 public class LoggerService {
 
-    public static final String DATETIME_LOGGER_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
-    public static final String WEB_CARRIAGE_RETURN = "</br>";
-    public static final String CARRIAGE_RETURN = "\n";
+    private static final String DATETIME_LOGGER_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
+    private static final String WEB_CARRIAGE_RETURN = "</br>";
+    private static final String CARRIAGE_RETURN = "\n";
 
     private static String outMessage;
 
@@ -17,10 +21,12 @@ public class LoggerService {
         reportMessage(true, formatMessage("%s - Exception='%s'", new Object[]{message, e.getMessage()}));
     }
 
+    @Step("{0}")
     public static void LOG(final String message) {
         reportMessage(true, message);
     }
 
+    @Step("{1}")
     public static void LOG(final boolean logToStandardOut, final String message) {
         outMessage = message;
         Reporter.log(message, logToStandardOut);
