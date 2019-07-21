@@ -71,7 +71,7 @@ To add complete Allure test reporting capabilities simply add this plugin to you
 <plugin>
     <groupId>io.qameta.allure</groupId>
     <artifactId>allure-maven</artifactId>
-    <version>${allure-maven.version}</version>
+    <version>2.9</version>
   </plugin>
 ```
 
