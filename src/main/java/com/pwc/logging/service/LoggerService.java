@@ -17,6 +17,7 @@ public class LoggerService {
 
     private static String outMessage;
 
+    @Step("{0}")
     public static void LOG(String message, Exception e) {
         reportMessage(true, formatMessage("%s - Exception='%s'", new Object[]{message, e.getMessage()}));
     }
