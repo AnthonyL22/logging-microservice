@@ -61,8 +61,24 @@ public class LoggerService {
         LOG(formatMessage("And " + message, args));
     }
 
+    public static void OR(String message, final Object... args) {
+        LOG(formatMessage("Or " + message, args));
+    }
+
     public static void BUT(String message, final Object... args) {
         LOG(formatMessage("But " + message, args));
+    }
+
+    public static void IF(String message, final Object... args) {
+        LOG(formatMessage("If " + message, args));
+    }
+
+    public static void NOT(String message, final Object... args) {
+        LOG(formatMessage("Not " + message, args));
+    }
+
+    public static void FINALLY(String message, final Object... args) {
+        LOG(formatMessage("Finally " + message, args));
     }
 
     private static void reportMessage(boolean logToStandardOut, String message) {

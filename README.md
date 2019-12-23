@@ -49,6 +49,10 @@ import static com.pwc.logging.service.LoggerService.*;
 * THEN();
 * AND();
 * BUT();
+* OR();
+* IF();
+* NOT();
+* FINALLY();
 
 # Output
 
@@ -59,7 +63,11 @@ Scenario:  Deny a guest access to restricted material
    When I attempt to access restricted content
    Then I am denied access to the restricted content
    And I verify the message
-   But I see an invalid title
+   Or I proceed to the next screen
+   But I see something unexpected
+   If I click a button
+   Not in the right input field
+   Finally I am complete
 ```
 
 # Allure Test Result Reporting
