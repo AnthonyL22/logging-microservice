@@ -81,6 +81,10 @@ public class LoggerService {
         LOG(formatMessage("Finally " + message, args));
     }
 
+    public static void IMAGE(String message, final Object... args) {
+        LOG(formatMessage("Image " + message, args));
+    }
+
     private static void reportMessage(boolean logToStandardOut, String message) {
         message = formatGherkinMessage(message);
         StringBuilder stringBuilder = new StringBuilder();
