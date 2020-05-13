@@ -3,15 +3,33 @@ package com.pwc.logging.service;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.imageio.ImageIO;
-import javax.media.*;
+import javax.media.Buffer;
+import javax.media.ConfigureCompleteEvent;
+import javax.media.Controller;
+import javax.media.ControllerEvent;
+import javax.media.ControllerListener;
+import javax.media.DataSink;
+import javax.media.EndOfMediaEvent;
+import javax.media.Format;
+import javax.media.Manager;
+import javax.media.MediaLocator;
+import javax.media.PrefetchCompleteEvent;
+import javax.media.Processor;
+import javax.media.RealizeCompleteEvent;
+import javax.media.ResourceUnavailableEvent;
+import javax.media.Time;
 import javax.media.control.TrackControl;
 import javax.media.datasink.DataSinkErrorEvent;
 import javax.media.datasink.DataSinkEvent;
 import javax.media.datasink.DataSinkListener;
 import javax.media.datasink.EndOfStreamEvent;
 import javax.media.format.VideoFormat;
-import javax.media.protocol.*;
-import java.awt.*;
+import javax.media.protocol.ContentDescriptor;
+import javax.media.protocol.DataSource;
+import javax.media.protocol.FileTypeDescriptor;
+import javax.media.protocol.PullBufferDataSource;
+import javax.media.protocol.PullBufferStream;
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -370,7 +388,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
         }
     }
 
-    final Object waitFileSync = new Object();
+    Object waitFileSync = new Object();
     boolean fileDone = false;
     boolean fileSuccess = true;
 

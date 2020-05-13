@@ -51,6 +51,10 @@ import static com.pwc.logging.service.LoggerService.*;
 * THEN();
 * AND();
 * BUT();
+* OR();
+* IF();
+* NOT();
+* FINALLY();
 
 # Output
 
@@ -61,8 +65,37 @@ Scenario:  Deny a guest access to restricted material
    When I attempt to access restricted content
    Then I am denied access to the restricted content
    And I verify the message
-   But I see an invalid title
+   Or I proceed to the next screen
+   But I see something unexpected
+   If I click a button
+   Not in the right input field
+   Finally I am complete
 ```
+
+# Allure Test Result Reporting
+![Sample](screenshots/test-results-report.png "Sample Custom Dashboard")
+
+To add complete Allure test reporting capabilities simply add this plugin to your project as well as the following:
+
+```
+<plugin>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-maven</artifactId>
+    <version>2.9</version>
+  </plugin>
+```
+
+To You can generate a report using one of the following command:
+
+`mvn allure:serve`
+    
+Report will be generated into temp folder. Web server with results will start.
+
+`mvn allure:report`
+    
+Report will be generated tо directory: target/site/allure-maven/index.html
+
+[More Information](https://github.com/allure-framework/allure-maven)
 
 # Video Logging
 The video logging feature is unique in that it takes a directory of .jpeg, .jpg or .png image files and converts those 

@@ -1,14 +1,23 @@
 package com.pwc.logging.service;
 
 import com.pwc.logging.LoggerBaseTest;
+import com.sun.media.MediaProcessor;
+import com.sun.media.datasink.file.Handler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.testng.Assert;
 
+import javax.media.DataSink;
+import javax.media.MediaLocator;
+import javax.media.NotRealizedError;
+import javax.media.Processor;
+import javax.media.datasink.DataSinkErrorEvent;
+import javax.media.datasink.EndOfStreamEvent;
 import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Vector;
 
 public class VideoLoggerServiceTest extends LoggerBaseTest {
 
@@ -18,7 +27,7 @@ public class VideoLoggerServiceTest extends LoggerBaseTest {
     @Before
     public void beforeTest() {
 
-        mockVideoLoggerService = new VideoLoggerService();
+        mockVideoLoggerService = new VideoLoggerService(400, 200, 4, "", "unit_test.mov", "");
         sourceFilesDirectory = VideoLoggerService.class.getClassLoader().getResource("files");
 
         mockVideoLoggerService.setWidth(400);
@@ -36,6 +45,45 @@ public class VideoLoggerServiceTest extends LoggerBaseTest {
         if (movieFile.exists()) {
             movieFile.delete();
         }
+    }
+
+    @Test
+    public void performConversionTest() {
+
+        Vector vector = new Vector<>();
+        MediaLocator mediaLocator = new MediaLocator("test media");
+        mockVideoLoggerService.performConversion(1, 1, 1, vector, mediaLocator);
+    }
+
+    @Test (expected = NotRealizedError.class)
+    public void createDataSinkTest() {
+
+        Processor processor = new MediaProcessor();
+        MediaLocator mediaLocator = new MediaLocator("test media");
+        mockVideoLoggerService.createDataSink(processor, mediaLocator);
+    }
+
+    @Test
+    public void waitForStateTest() {
+
+        Processor processor = new MediaProcessor();
+        mockVideoLoggerService.waitForState(processor, 1);
+    }
+
+    @Test
+    public void dataSinkUpdateEndOfStreamEventTest() {
+
+        DataSink dataSink = new Handler();
+        EndOfStreamEvent dataSinkEvent = new EndOfStreamEvent(dataSink, "testing");
+        mockVideoLoggerService.dataSinkUpdate(dataSinkEvent);
+    }
+
+    @Test
+    public void dataSinkUpdateDataSinkErrorEventTest() {
+
+        DataSink dataSink = new Handler();
+        DataSinkErrorEvent dataSinkEvent = new DataSinkErrorEvent(dataSink, "testing");
+        mockVideoLoggerService.dataSinkUpdate(dataSinkEvent);
     }
 
     @Test
@@ -99,7 +147,6 @@ public class VideoLoggerServiceTest extends LoggerBaseTest {
     @Test
     public void outputDirectoryURLInvalidExtensionTest() {
         mockVideoLoggerService.setOutputDirectoryURL(sourceFilesDirectory.getPath() + File.separator + "temp" + File.separator + "badfile.wav");
-
         HashMap settings = mockVideoLoggerService.prepareVideoConversion();
         Assert.assertTrue(settings.get("outputDirectory").toString().endsWith("badfile.mov"));
 

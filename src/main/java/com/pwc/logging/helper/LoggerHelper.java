@@ -19,7 +19,7 @@ public class LoggerHelper {
     private static final int GENERAL_LOG_SPACE_COUNT = 6;
 
     private static final String[] GHERKIN_HEADING_TOKENS = new String[]{"FEATURE", "SCENARIO"};
-    private static final String[] GHERKIN_CORE_TOKENS = new String[]{"GIVEN", "WHEN", "THEN", "AND", "BUT"};
+    private static final String[] GHERKIN_CORE_TOKENS = new String[]{"GIVEN", "WHEN", "THEN", "AND", "BUT", "OR", "IF", "NOT", "FINALLY", "IMAGE"};
     private static final String[] INFORMATIONAL_TOKENS = new String[]{"--"};
 
     /**

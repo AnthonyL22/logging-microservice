@@ -1,26 +1,33 @@
 package com.pwc.logging.service;
 
+import io.qameta.allure.Step;
 import org.apache.commons.lang.StringUtils;
 import org.testng.Reporter;
 
-import static com.pwc.logging.helper.LoggerHelper.*;
+import static com.pwc.logging.helper.LoggerHelper.formatGherkinMessage;
+import static com.pwc.logging.helper.LoggerHelper.formatMessage;
+import static com.pwc.logging.helper.LoggerHelper.getClassName;
+import static com.pwc.logging.helper.LoggerHelper.getDateTime;
 
 public class LoggerService {
 
-    public static final String DATETIME_LOGGER_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
-    public static final String WEB_CARRIAGE_RETURN = "</br>";
-    public static final String CARRIAGE_RETURN = "\n";
+    private static final String DATETIME_LOGGER_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
+    private static final String WEB_CARRIAGE_RETURN = "</br>";
+    private static final String CARRIAGE_RETURN = "\n";
 
     private static String outMessage;
 
+    @Step("{0}")
     public static void LOG(String message, Exception e) {
         reportMessage(true, formatMessage("%s - Exception='%s'", new Object[]{message, e.getMessage()}));
     }
 
+    @Step("{0}")
     public static void LOG(final String message) {
         reportMessage(true, message);
     }
 
+    @Step("{1}")
     public static void LOG(final boolean logToStandardOut, final String message) {
         outMessage = message;
         Reporter.log(message, logToStandardOut);
@@ -54,8 +61,28 @@ public class LoggerService {
         LOG(formatMessage("And " + message, args));
     }
 
+    public static void OR(String message, final Object... args) {
+        LOG(formatMessage("Or " + message, args));
+    }
+
     public static void BUT(String message, final Object... args) {
         LOG(formatMessage("But " + message, args));
+    }
+
+    public static void IF(String message, final Object... args) {
+        LOG(formatMessage("If " + message, args));
+    }
+
+    public static void NOT(String message, final Object... args) {
+        LOG(formatMessage("Not " + message, args));
+    }
+
+    public static void FINALLY(String message, final Object... args) {
+        LOG(formatMessage("Finally " + message, args));
+    }
+
+    public static void IMAGE(String message, final Object... args) {
+        LOG(formatMessage("Image " + message, args));
     }
 
     private static void reportMessage(boolean logToStandardOut, String message) {
