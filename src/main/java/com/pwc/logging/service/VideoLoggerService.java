@@ -50,14 +50,14 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     private String outputMovieFileName;
     private String outputDirectoryURL;
 
-    private final int DEFAULT_FRAME_RATE = 2;
-    private final String DEFAULT_OUTPUT_FILE_NAME = "out.mov";
+    private static final int DEFAULT_FRAME_RATE = 2;
+    private static final String DEFAULT_OUTPUT_FILE_NAME = "out.mov";
 
     public VideoLoggerService() {
     }
 
     /**
-     * Convert image files to single video file
+     * Convert image files to single video file.
      *
      * @param width                video width
      * @param height               video height
@@ -87,8 +87,8 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
             frameRate = frameRate > -1 ? frameRate : DEFAULT_FRAME_RATE;
             sourceFilesDirectoryURL = sourceFilesDirectoryURL != null ? sourceFilesDirectoryURL : "";
             outputMovieFileName = outputMovieFileName != null ? outputMovieFileName : DEFAULT_OUTPUT_FILE_NAME;
-            outputDirectoryURL = outputDirectoryURL != null ? StringUtils.prependIfMissing(outputDirectoryURL, "file:") + File.separator + outputMovieFileName :
-                    StringUtils.prependIfMissing(sourceFilesDirectoryURL, "file:") + File.separator + outputMovieFileName;
+            outputDirectoryURL = outputDirectoryURL != null ? StringUtils.prependIfMissing(outputDirectoryURL, "file:") + File.separator + outputMovieFileName
+                            : StringUtils.prependIfMissing(sourceFilesDirectoryURL, "file:") + File.separator + outputMovieFileName;
 
             HashMap videoSettings = prepareVideoConversion();
 
@@ -100,10 +100,8 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
                 }
 
                 VideoLoggerService service = new VideoLoggerService();
-                service.performConversion(Integer.parseInt(videoSettings.get("width").toString()),
-                        Integer.parseInt(videoSettings.get("height").toString()),
-                        Integer.parseInt(videoSettings.get("frameRate").toString()),
-                        (Vector) videoSettings.get("files"), oml);
+                service.performConversion(Integer.parseInt(videoSettings.get("width").toString()), Integer.parseInt(videoSettings.get("height").toString()),
+                                Integer.parseInt(videoSettings.get("frameRate").toString()), (Vector) videoSettings.get("files"), oml);
 
                 cleanUpConversion();
 
@@ -136,8 +134,9 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
             } else if (files.length > 0) {
                 Arrays.sort(files);
                 for (String file : files) {
-                    if (StringUtils.containsIgnoreCase(file, ".jpg") || StringUtils.containsIgnoreCase(file, ".jpeg") || StringUtils.containsIgnoreCase(file, ".png"))
+                    if (StringUtils.containsIgnoreCase(file, ".jpg") || StringUtils.containsIgnoreCase(file, ".jpeg") || StringUtils.containsIgnoreCase(file, ".png")) {
                         inputFiles.addElement(sourceFiles.getParent() + System.getProperty("file.separator") + sourceFiles.getName() + System.getProperty("file.separator") + file);
+                    }
                 }
             }
 
@@ -183,9 +182,10 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     }
 
     /**
-     * If movie was successfully created, then delete all image files used to the create movie post production
+     * If movie was successfully created, then delete all image files used to the create movie post production.
      */
     protected void cleanUpConversion() {
+
         File movieFile = new File(sourceFilesDirectoryURL + File.separator + outputMovieFileName);
         if (movieFile.exists()) {
             FilenameFilter filter = new ImageFileFilter();
@@ -197,9 +197,10 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     }
 
     /**
-     * File filter for .jpg files
+     * File filter for .jpg files.
      */
     public static class ImageFileFilter implements FilenameFilter {
+
         @Override
         public boolean accept(File directory, String fileName) {
             return fileName.endsWith(".jpg") || fileName.endsWith(".jpeg");
@@ -207,7 +208,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     }
 
     /**
-     * File filter for .mov files
+     * File filter for .mov files.
      */
     public static class MovieFileFilter implements FilenameFilter {
         @Override
@@ -217,7 +218,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     }
 
     /**
-     * Perform image to movie converstion
+     * Perform image to movie conversion.
      *
      * @param width     movie width
      * @param height    movie height
@@ -249,17 +250,16 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
 
         p.setContentDescriptor(new ContentDescriptor(FileTypeDescriptor.QUICKTIME));
 
-        TrackControl tcs[] = p.getTrackControls();
+        TrackControl[] tcs = p.getTrackControls();
         System.out.println("# track controls = " + tcs.length);
         for (TrackControl tc : tcs) {
-            Format ff[] = tc.getSupportedFormats();
-
-            for (Format aFf : ff) {
-                System.out.println("  track control " + aFf);
+            Format[] ff = tc.getSupportedFormats();
+            for (Format toFormat : ff) {
+                System.out.println("  track control " + toFormat);
             }
         }
 
-        Format f[] = tcs[0].getSupportedFormats();
+        Format[] f = tcs[0].getSupportedFormats();
         if (f == null || f.length <= 0) {
             System.err.println("The mux does not support the input format: " + tcs[0].getFormat());
             return false;
@@ -270,8 +270,8 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
             System.out.println("input format: " + formatName);
         }
 
-        for (Format aF : f) {
-            System.out.println("input format: " + aF);
+        for (Format formatName : f) {
+            System.out.println("input format: " + formatName);
         }
 
         tcs[0].setFormat(f[0]);
@@ -354,10 +354,12 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
      * @param state state
      */
     boolean waitForState(Processor p, int state) {
+
         synchronized (waitSync) {
             try {
-                while (p.getState() < state && stateTransitionOK)
+                while (p.getState() < state && stateTransitionOK) {
                     waitSync.wait();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -370,9 +372,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
      */
     public void controllerUpdate(ControllerEvent evt) {
 
-        if (evt instanceof ConfigureCompleteEvent ||
-                evt instanceof RealizeCompleteEvent ||
-                evt instanceof PrefetchCompleteEvent) {
+        if (evt instanceof ConfigureCompleteEvent || evt instanceof RealizeCompleteEvent || evt instanceof PrefetchCompleteEvent) {
             synchronized (waitSync) {
                 stateTransitionOK = true;
                 waitSync.notifyAll();
@@ -398,8 +398,9 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     boolean waitForFileDone() {
         synchronized (waitFileSync) {
             try {
-                while (!fileDone)
+                while (!fileDone) {
                     waitFileSync.wait();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -466,10 +467,6 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
         this.outputMovieFileName = outputMovieFileName;
     }
 
-    public String getOutputDirectoryURL() {
-        return outputDirectoryURL;
-    }
-
     public void setOutputDirectoryURL(String outputDirectoryURL) {
         this.outputDirectoryURL = outputDirectoryURL;
     }
@@ -481,16 +478,19 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
 
         MediaLocator ml;
 
-        if (url.indexOf(":") > 0 && (ml = new MediaLocator(url)) != null)
+        if (url.indexOf(":") > 0 && (ml = new MediaLocator(url)) != null) {
             return ml;
+        }
 
         if (url.startsWith(File.separator)) {
-            if ((ml = new MediaLocator("file:" + url)) != null)
+            if ((ml = new MediaLocator("file:" + url)) != null) {
                 return ml;
+            }
         } else {
             String file = "file:" + System.getProperty("user.dir") + File.separator + url;
-            if ((ml = new MediaLocator(file)) != null)
+            if ((ml = new MediaLocator(file)) != null) {
                 return ml;
+            }
         }
 
         return null;
@@ -499,11 +499,11 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
     /**
      * A DataSource to read from a list of JPEG image files and
      * turn that into a stream of JMF buffers.
-     * The DataSource is not seekable or positionable.
+     * The DataSource is not seek-able or positionable.
      */
     class ImageDataSource extends PullBufferDataSource {
 
-        ImageSourceStream streams[];
+        ImageSourceStream[] streams;
 
         ImageDataSource(int width, int height, int frameRate, Vector images) {
             streams = new ImageSourceStream[1];
@@ -566,11 +566,13 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
      * The source stream to go along with ImageDataSource.
      */
     class ImageSourceStream implements PullBufferStream {
+
         Vector images;
-        int width, height;
+        int width;
+        int height;
         VideoFormat format;
 
-        int nextImage = 0;    // index of the next image to be read.
+        int nextImage = 0;
         boolean ended = false;
 
         public ImageSourceStream(int width, int height, int frameRate, Vector images) {
@@ -578,11 +580,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
             this.height = height;
             this.images = images;
 
-            format = new VideoFormat(VideoFormat.JPEG,
-                    new Dimension(width, height),
-                    Format.NOT_SPECIFIED,
-                    Format.byteArray,
-                    (float) frameRate);
+            format = new VideoFormat(VideoFormat.JPEG, new Dimension(width, height), Format.NOT_SPECIFIED, Format.byteArray, (float) frameRate);
         }
 
         /**
@@ -593,7 +591,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
         }
 
         /**
-         * Convert any PNG source files to JPEG file types for movie creation
+         * Convert any PNG source files to JPEG file types for movie creation.
          *
          * @param imageFile source file (PNG or JPEG)
          * @return target file name
@@ -603,7 +601,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
             try {
                 if (imageFile.endsWith(".png")) {
                     LOG(true, "Converting PNG image='%s' to .jpeg and deleting original .png", imageFile);
-                    File pngFile = new File(imageFile);  // read the png
+                    File pngFile = new File(imageFile); // read the png
                     BufferedImage inputImage = ImageIO.read(pngFile);
 
                     imageFile = StringUtils.substringBeforeLast(imageFile, ".png");
@@ -641,7 +639,7 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
 
             RandomAccessFile raFile = new RandomAccessFile(imageFile, "r");
 
-            byte data[] = null;
+            byte[] data = null;
 
             if (buf.getData() instanceof byte[]) {
                 data = (byte[]) buf.getData();

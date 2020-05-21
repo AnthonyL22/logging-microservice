@@ -19,7 +19,7 @@ public class LoggerService {
 
     @Step("{0}")
     public static void LOG(String message, Exception e) {
-        reportMessage(true, formatMessage("%s - Exception='%s'", new Object[]{message, e.getMessage()}));
+        reportMessage(true, formatMessage("%s - Exception='%s'", new Object[] {message, e.getMessage()}));
     }
 
     @Step("{0}")

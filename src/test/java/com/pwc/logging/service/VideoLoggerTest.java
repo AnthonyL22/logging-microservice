@@ -15,7 +15,7 @@ public class VideoLoggerTest extends LoggerBaseTest {
 
     @Before
     public void beforeTest() {
-        settings = new String[]{USER_HOME + File.separator + "files", "777", "1234", "4", "my_video.mov", USER_HOME + File.separator + "output"};
+        settings = new String[] {USER_HOME + File.separator + "files", "777", "1234", "4", "my_video.mov", USER_HOME + File.separator + "output"};
     }
 
     @After
@@ -24,7 +24,7 @@ public class VideoLoggerTest extends LoggerBaseTest {
 
     @Test
     public void mainNoArgsTest() {
-        VideoLogger.main(new String[]{});
+        VideoLogger.main(new String[] {});
     }
 
     @Test
@@ -35,7 +35,7 @@ public class VideoLoggerTest extends LoggerBaseTest {
     @Test
     public void configureSettingsFromUserOnlyRequiredTest() {
 
-        settings = new String[]{USER_HOME + File.separator + "files"};
+        settings = new String[] {USER_HOME + File.separator + "files"};
 
         VideoLogger.configureSettingsFromUser(settings);
 

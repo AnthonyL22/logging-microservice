@@ -8,7 +8,8 @@ import static com.pwc.logging.service.LoggerService.LOG;
 
 public class VideoLogger {
 
-    private static final int DEFAULT_WIDTH = 1, DEFAULT_HEIGHT = 1;
+    private static final int DEFAULT_WIDTH = 1;
+    private static final int DEFAULT_HEIGHT = 1;
     private static final int DEFAULT_FRAME_RATE = 2;
     private static final String DEFAULT_OUTPUT_FILE_NAME = "out.mov";
 
@@ -21,7 +22,7 @@ public class VideoLogger {
 
     /**
      * Stand-alone Image to Video conversion standalone tool.  This tool takes a directory of images and
-     * converts the images into a single .mov video file.  Only arg[0] is Mandatory
+     * converts the images into a single .mov video file.  Only arg[0] is Mandatory.
      *
      * arg[0] = Source Image Files Directory (Default - user's current directory)
      * arg[1] = video width (Default - width of first image)
@@ -32,7 +33,7 @@ public class VideoLogger {
      *
      * @param args program settings
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         if (args.length == 0) {
             displayHelp();
@@ -59,7 +60,7 @@ public class VideoLogger {
     }
 
     /**
-     * Interrogate the arguments sent from the calling user
+     * Interrogate the arguments sent from the calling user.
      *
      * @param args program arguments
      */
@@ -96,9 +97,10 @@ public class VideoLogger {
     }
 
     /**
-     * Display application Help and Examples
+     * Display application Help and Examples.
      */
     public static void displayHelp() {
+
         System.out.println("\n*************** CONFIGURATION HELP MENU ***************");
         System.out.println("\n args[0] = Source Image Files Directory (Default - user's current directory");
         System.out.println("\n args[1] = video Width (Default - width of first image)");
@@ -106,8 +108,10 @@ public class VideoLogger {
         System.out.println("\n args[3] = Frames/sec (Default - 2 frames/sec)");
         System.out.println("\n args[4] = Output .mov file name (Default - 'out.mov')");
         System.out.println("\n args[5] = Output .mov file location (Default - Source file directory from arg[0])");
-        System.out.println("\n\nExample For Unix Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLogger /User/username/Desktop/images 500 600 10 out.mov /User/username/Desktop/");
-        System.out.println("\n\nExample For Windows Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLogger C:\\images 500 600 10 out.mov C:\\temp\\");
+        System.out.println("\n\nExample For Unix Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLogger "
+                        + "/User/username/Desktop/images 500 600 10 out.mov /User/username/Desktop/");
+        System.out.println("\n\nExample For Windows Users: java -cp logging-microservice-1.0.2.jar com.pwc.logging.service.VideoLogger " //
+                        + "C:\\images 500 600 10 out.mov C:\\temp\\");
 
     }
 

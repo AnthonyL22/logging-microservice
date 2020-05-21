@@ -18,19 +18,20 @@ public class LoggerHelper {
     private static final int GHERKIN_CORE_SPACE_COUNT = 4;
     private static final int GENERAL_LOG_SPACE_COUNT = 6;
 
-    private static final String[] GHERKIN_HEADING_TOKENS = new String[]{"FEATURE", "SCENARIO"};
-    private static final String[] GHERKIN_CORE_TOKENS = new String[]{"GIVEN", "WHEN", "THEN", "AND", "BUT", "OR", "IF", "NOT", "FINALLY", "IMAGE"};
-    private static final String[] INFORMATIONAL_TOKENS = new String[]{"--"};
+    private static final String[] GHERKIN_HEADING_TOKENS = new String[] {"FEATURE", "SCENARIO"};
+    private static final String[] GHERKIN_CORE_TOKENS = new String[] {"GIVEN", "WHEN", "THEN", "AND", "BUT", "OR", "IF", "NOT", "FINALLY", "IMAGE"};
+    private static final String[] INFORMATIONAL_TOKENS = new String[] {"--"};
 
     /**
      * Wrapper method to avoid MissingFormatArgumentException that users could
-     * accidentally do by using the variable arguments logic incorrectly
+     * accidentally do by using the variable arguments logic incorrectly.
      *
      * @param message     Assertion message to manipulate
      * @param messageArgs Variable args array
      * @return well-formatted message
      */
     public static String formatMessage(String message, Object... messageArgs) {
+
         try {
             return String.format(message, messageArgs);
         } catch (Exception e) {
@@ -42,7 +43,14 @@ public class LoggerHelper {
         return String.format(message, messageArgs);
     }
 
+    /**
+     * Format message.
+     *
+     * @param message message to format
+     * @return formatted message
+     */
     public static String formatGherkinMessage(String message) {
+
         if (startsWithAnyIgnoreCase(message, GHERKIN_HEADING_TOKENS)) {
             return StringUtils.repeat(" ", GHERKIN_HEADING_SPACE_COUNT) + message;
         } else if (startsWithAnyIgnoreCase(message, GHERKIN_CORE_TOKENS)) {
@@ -54,6 +62,13 @@ public class LoggerHelper {
         }
     }
 
+    /**
+     * Check if a source string starts with a token.
+     *
+     * @param actual source string
+     * @param tokens token to find
+     * @return flag
+     */
     private static boolean startsWithAnyIgnoreCase(String actual, String[] tokens) {
         for (String token : tokens) {
             if (org.apache.commons.lang.StringUtils.startsWithIgnoreCase(actual, token)) {
@@ -63,7 +78,15 @@ public class LoggerHelper {
         return false;
     }
 
+    /**
+     * Check if a source string contains a token.
+     *
+     * @param actual source string
+     * @param tokens token to find
+     * @return flag
+     */
     private static boolean containsAnyIgnoreCase(final String actual, String[] tokens) {
+
         for (String token : tokens) {
             if (org.apache.commons.lang.StringUtils.containsIgnoreCase(actual, token)) {
                 return true;
@@ -73,12 +96,13 @@ public class LoggerHelper {
     }
 
     /**
-     * Get class name from ITestResult in context
+     * Get class name from ITestResult in context.
      *
      * @param testResult currently executing method
      * @return well formed test class name
      */
     public static String getClassName(ITestResult testResult) {
+
         try {
             if (testResult != null) {
                 return getClassNameFromClasspath(testResult.getMethod());
@@ -90,52 +114,56 @@ public class LoggerHelper {
     }
 
     /**
-     * Get class name from ITestNGMethod in context
+     * Get class name from ITestNGMethod in context.
      *
      * @param currentMethod currently executing method
      * @return well formed test class name
      */
     public static String getClassNameFromClasspath(final ITestNGMethod currentMethod) {
+
         return StringUtils.substringBeforeLast(StringUtils.substringAfterLast(currentMethod.getTestClass().toString(), "."), "]");
     }
 
     /**
-     * Converts the Stack Trace to String
+     * Converts the Stack Trace to String.
      *
      * @param error Assertion Error that was captured when Assert Method failed
      * @return Stack trace as String
      */
     public static String convertStackTrace(Throwable error) {
+
         StringWriter stackTraceWriter = new StringWriter();
         error.printStackTrace(new PrintWriter(stackTraceWriter));
         return stackTraceWriter.toString();
     }
 
     /**
-     * Utility method which returns a Date and time <code>String</code> for a specified DATE offset
+     * Utility method which returns a Date and time <code>String</code> for a specified DATE offset.
      *
      * @param pattern date/time pattern
      * @return offset date and time
      */
     public static String getDateTime(final String pattern) {
+
         return getDateTime(pattern, System.getProperty("user.timezone"));
     }
 
     /**
      * Utility method which returns a Date and time <code>String</code> for a specified DATE offset in a
-     * given date formatted pattern for a particular TimeZone <code>String</code>
+     * given date formatted pattern for a particular TimeZone <code>String</code>.
      *
      * @param pattern  date/time pattern
      * @param timeZone timezone of timestamp
      * @return offset date and time
      */
     public static String getDateTime(final String pattern, final String timeZone) {
+
         return getDateTime(pattern, timeZone, 0);
     }
 
     /**
      * Utility method which returns a Date and time <code>String</code> for a specified DATE offset in a
-     * given date formatted pattern for a particular TimeZone <code>String</code>
+     * given date formatted pattern for a particular TimeZone <code>String</code>.
      *
      * @param pattern    date/time pattern
      * @param timeZone   timezone of timestamp
@@ -143,6 +171,7 @@ public class LoggerHelper {
      * @return offset date and time
      */
     public static String getDateTime(final String pattern, final String timeZone, final int dateOffset) {
+
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone(timeZone));
         cal.add(Calendar.DATE, dateOffset);
         return getDateTime(pattern, cal, timeZone);
@@ -157,6 +186,7 @@ public class LoggerHelper {
      * @return formatted calendar time
      */
     public static String getDateTime(final String pattern, final Calendar calendar, final String timeZone) {
+
         DateFormat formatter = new SimpleDateFormat(pattern);
         formatter.setCalendar(calendar);
         formatter.setTimeZone(TimeZone.getTimeZone(timeZone));
@@ -165,29 +195,30 @@ public class LoggerHelper {
 
     /**
      * Utility method which returns a Date for a specified DATE offset for a
-     * particular TimeZone <code>String</code>
+     * particular TimeZone <code>String</code>.
      *
      * @param timeZone   timezone of timestamp
      * @param dateOffset date offset
      * @return offset date and time
      */
     public static Date getDate(final String timeZone, final int dateOffset) {
+
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone(timeZone));
         cal.add(Calendar.DATE, dateOffset);
         return cal.getTime();
     }
 
     /**
-     * Utility method which returns a Date for a specified DATE offset
+     * Utility method which returns a Date for a specified DATE offset.
      *
      * @param dateOffset date offset
      * @return offset date offset
      */
     public static Date getDate(final int dateOffset) {
+
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, dateOffset);
         return cal.getTime();
     }
-
 
 }

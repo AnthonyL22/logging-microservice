@@ -24,15 +24,15 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class LoggerHelperTest extends LoggerBaseTest {
 
-    private final int DATE_OFFSET = 0;
-    private final String TIMEZONE = "PST";
-    private final String DATE_PATTERN = "MM\\dd\\yyyy";
+    private static final int DATE_OFFSET = 0;
+    private static final String TIMEZONE = "PST";
+    private static final String DATE_PATTERN = "MM\\dd\\yyyy";
 
-    private final String FORMATTING_MESSAGE = "Scenario: Landing Page %s";
-    private final String GHERKIN_HEADING_MESSAGE = "Scenario: Landing Page Components";
-    private final String GHERKIN_CORE_MESSAGE = "Then The Landing Page is displayed with expected data";
-    private final String INFORMATIONAL_MESSAGE = "testBasic--Description: N/A";
-    private final String GENERAL_LOG_MESSAGE = "Verify elementTextExists() exists text=Response from OneIp-WebService for Patents. {Page Title: 'OneIP'} is <true> was <true>";
+    private static final String FORMATTING_MESSAGE = "Scenario: Landing Page %s";
+    private static final String GHERKIN_HEADING_MESSAGE = "Scenario: Landing Page Components";
+    private static final String GHERKIN_CORE_MESSAGE = "Then The Landing Page is displayed with expected data";
+    private static final String INFORMATIONAL_MESSAGE = "testBasic--Description: N/A";
+    private static final String GENERAL_LOG_MESSAGE = "Verify elementTextExists() exists text=Response from OneIp-WebService for Patents. {Page Title: 'OneIP'} is <true> was <true>";
 
     private String expectedDateAsString;
     private Calendar expectedCalendar;
@@ -78,22 +78,23 @@ public class LoggerHelperTest extends LoggerBaseTest {
 
     @Test
     public void formatGherkinMessageGeneralLogTest() {
-        Assert.assertEquals("      Verify elementTextExists() exists text=Response from OneIp-WebService for Patents. {Page Title: 'OneIP'} is <true> was <true>", LoggerHelper.formatGherkinMessage(GENERAL_LOG_MESSAGE));
+        Assert.assertEquals("      Verify elementTextExists() exists text=Response from OneIp-WebService for Patents. {Page Title: 'OneIP'} is <true> was <true>",
+                        LoggerHelper.formatGherkinMessage(GENERAL_LOG_MESSAGE));
     }
 
     @Test
     public void formatMessageTest() {
-        Assert.assertEquals("Scenario: Landing Page Components", LoggerHelper.formatMessage(FORMATTING_MESSAGE, new Object[]{"Components"}));
+        Assert.assertEquals("Scenario: Landing Page Components", LoggerHelper.formatMessage(FORMATTING_MESSAGE, new Object[] {"Components"}));
     }
 
     @Test
     public void formatMessageInvalidCountOfSubstitutionsTest() {
-        Assert.assertEquals("Scenario: Landing  Page Components", LoggerHelper.formatMessage("Scenario: Landing %s Page %s", new Object[]{"Components"}));
+        Assert.assertEquals("Scenario: Landing  Page Components", LoggerHelper.formatMessage("Scenario: Landing %s Page %s", new Object[] {"Components"}));
     }
 
     @Test(expected = UnknownFormatConversionException.class)
     public void formatMessageInvalidArgumentTest() {
-        Assert.assertEquals("Scenario: Landing Page Components", LoggerHelper.formatMessage("Scenario: Landing Page %3", new Object[]{"Components"}));
+        Assert.assertEquals("Scenario: Landing Page Components", LoggerHelper.formatMessage("Scenario: Landing Page %3", new Object[] {"Components"}));
     }
 
     @Test

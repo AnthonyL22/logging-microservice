@@ -55,7 +55,7 @@ public class VideoLoggerServiceTest extends LoggerBaseTest {
         mockVideoLoggerService.performConversion(1, 1, 1, vector, mediaLocator);
     }
 
-    @Test (expected = NotRealizedError.class)
+    @Test(expected = NotRealizedError.class)
     public void createDataSinkTest() {
 
         Processor processor = new MediaProcessor();
