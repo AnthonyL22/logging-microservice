@@ -140,7 +140,6 @@ public class VideoLoggerService implements ControllerListener, DataSinkListener 
                 }
             }
 
-
             img = ImageIO.read(new File((String) inputFiles.elementAt(0)));
             if (img != null && width < 1 && height < 1) {
                 width = img.getWidth();

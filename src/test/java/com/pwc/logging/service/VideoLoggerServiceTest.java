@@ -152,5 +152,4 @@ public class VideoLoggerServiceTest extends LoggerBaseTest {
 
     }
 
-
 }

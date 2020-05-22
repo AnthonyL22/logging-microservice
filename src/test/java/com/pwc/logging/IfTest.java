@@ -1,6 +1,5 @@
 package com.pwc.logging;
 
-
 import com.pwc.logging.service.LoggerService;
 import org.junit.Test;
 
