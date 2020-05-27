@@ -145,7 +145,7 @@ public class LoggerHelper {
      */
     public static String getDateTime(final String pattern) {
 
-        return getDateTime(pattern, System.getProperty("user.timezone"));
+        return getDateTime(pattern, TimeZone.getDefault().getID());
     }
 
     /**
